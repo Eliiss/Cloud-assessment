@@ -1,0 +1,46 @@
+/*NAV BAR CSS */
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+#logo {
+  margin: auto;
+  display: flex;
+  padding-left: 30%;
+}
+
+  /*other css below that isnt for nav bar (name the sections please*/
+
+  /* login page*/
+  input[type=text], input[type=password] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+  }
+
+  button {
+    background-color: #46beb0;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 20px;
+  }
+  button:hover {
+    opacity: 0.8;
+  }
+
+  form {
+    display: block;
+    
+    padding-left: 30%;
+    padding-top: 10%;
+  }
