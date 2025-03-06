@@ -17,11 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from store.views import homepage_view, loginpage_view
+
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', homepage_view, name='homepage'),
+    path('login/', loginpage_view, name='loginpage'),
 ]
 
 if settings.DEBUG:

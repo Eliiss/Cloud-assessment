@@ -1,12 +1,15 @@
+
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <header>
-<link rel="stylesheet" href="WebsiteCSS.css"> 
+<link rel="stylesheet" href="{% static 'store/WebsiteCSS.css' %}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </header>
 <body>
+  
     <nav class="navbar navbar-default">
         
           <ul class="nav navbar-nav">
@@ -18,12 +21,12 @@
           
           <div class="container-fluid" >
             <div class="navbar-header"id="logo">
-              <a class="navbar-brand" href="Homepage.html">LogoHere</a>
+              <a class="navbar-brand" href="{% url 'homepage' %}">LogoHere</a>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Basket</a></li>
-                <li><a href="Loginpage.html">Login</a></li>
+                <li><a href="{% url 'loginpage' %}">Login</a></li>
               </ul>
         </div>
       </nav>
