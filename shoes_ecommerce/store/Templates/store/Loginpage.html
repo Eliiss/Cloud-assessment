@@ -1,54 +1,42 @@
-<!DOCTYPE html>
+{% extends 'store/Homepage.html' %}
 {% load static %}
-<html lang="en">
-<header>
-  <link rel="stylesheet" href="{% static 'store/WebsiteCSS.css' %}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</header>
-<body>
-  <nav class="navbar navbar-default">
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="container LoginInputs">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
         
-    <ul class="nav navbar-nav">
-      <li><a href="#">Woman</a></li>
-      <li><a href="#">Men</a></li>
-      <li><a href="#">Children</a></li>
-      <li><a href="#">Trainers</a></li>
-    </ul>
-    
-    <div class="container-fluid" >
-      <div class="navbar-header"id="logo">
-        <a class="navbar-brand" href="{% url 'homepage' %}">LogoHere</a>
-      </div>
-
-      <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Basket</a></li>
-          <li><a href="{% url 'loginpage' %}">Login</a></li>
-        </ul>
-  </div>
-</nav>
+        <b>{{ form.username.label }}</b>
+        <br>
+        {{ form.username }}
+        {% if form.username.errors %}
+            <div class="error-message">
+                {{ form.username.errors }}
+            </div>
+        {% endif %}
         
-     
-      <form>
-      <div class="container LoginInputs">
-        <b>Username</b>
         <br>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <b>{{ form.password.label }}</b>
         <br>
-        <b>Password</b>
-        <br>
-        <input type="password" placeholder="Enter Password" name="pass" required>
-        <br> <br>
+        {{ form.password }}
+        {% if form.password.errors %}
+            <div class="error-message">
+                {{ form.password.errors }}
+            </div>
+        {% endif %}
+        
+        <br><br>
         <button type="submit">Login</button>
         <br>
-        <a href="#" class="SignUpButton">
-          <h6> Dont have an account? Sign Up Here</h6>
+        <a href="{% url 'Users:signup' %}" class="SignUpButton">
+            <h6>Don't have an account? Sign Up Here</h6>
         </a>
-        
-      </div>
-      </form>
-      
-</body>
-</html>
-
+    </div>
+</form>
+{% endblock content %}

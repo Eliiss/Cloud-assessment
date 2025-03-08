@@ -44,3 +44,73 @@ ul {
     padding-left: 30%;
     padding-top: 10%;
   }
+
+.errorlist {
+  color: #dc3545;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.help-text {
+  color: #6c757d;
+  font-size: 0.9em;
+  margin: 5px 0;
+  width: 50%;
+}
+
+/* Styeles for error/success */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  width: 50%;
+}
+
+.alert-error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.9em;
+  margin: 5px 0;
+  width: 50%;
+}
+
+/* Django forms*/
+form p {
+  margin-bottom: 15px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.form-input {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+/* Date field */
+input[type="date"].form-input {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
