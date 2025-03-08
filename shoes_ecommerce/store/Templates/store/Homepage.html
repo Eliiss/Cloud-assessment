@@ -21,7 +21,7 @@
           
           <div class="container-fluid" >
             <div class="navbar-header"id="logo">
-              <a class="navbar-brand" href="{% url 'homepage' %}">LogoHere</a>
+              <a class="navbar-brand" href="{% url 'homepage' %}">StepRight</a>
             </div>
 
             <ul class="nav navbar-nav navbar-right">
@@ -29,14 +29,38 @@
                 <li><a href="{% url 'Users:login' %}">Login</a></li>
               </ul>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Basket</a></li>
-      </ul>
+       
   </div>
 </nav>
 
+
+
+
 {% block content %}
+<div class="MainHomepageContent">
+  <ul class="MainBanner">
+    <li>
+      <h1> big cover image banner here </h1>
+      <br> <br> <br>
+    </li>
+  </ul>
+<ul class="NewIn">
+  <li>
+    <h3> New In </h3>
+  </li>
+  <li>
+    <img src="{{ MEDIA_URL }}shoe_images/th.jpeg" alt="Tester image of a shoe" class="NewIn_Images">
+    <img src="{{ MEDIA_URL }}shoe_images/OIP.jpg" alt="Tester image of a shoe" class="NewIn_Images">
+    <img src="{{ MEDIA_URL }}shoe_images/p.2.jpg" alt="Tester image of a shoe" class="NewIn_Images">
+    <img src="{{ MEDIA_URL }}shoe_images/th.jpeg" alt="Tester image of a shoe" class="NewIn_Images">
+  </li>
+
+</ul>
+</div>
 {% endblock content %}
+
+
+
 </body>
 </html>
 

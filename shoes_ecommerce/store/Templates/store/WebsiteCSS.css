@@ -114,3 +114,19 @@ input[type="date"].form-input {
   padding: 12px 20px;
   margin: 8px 0;
 }
+
+/*Homepage css*/
+
+.MainHomepageContent{
+  padding-left: 25%;
+  padding-right: 25%;
+}
+.NewIn{
+  align-items: center;
+}
+.NewIn_Images{
+  width: 150px;
+  height: auto;
+  padding: 15px;
+
+}

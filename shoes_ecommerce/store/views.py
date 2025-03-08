@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from django.conf import settings
 
 def homepage_view(request):
-    return render(request, 'store/Homepage.html')
+    return render(request, 'store/Homepage.html', {'MEDIA_URL': settings.MEDIA_URL})
 
 def store(request):
     context = {}  #add the data to pass the store html 
