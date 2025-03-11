@@ -130,3 +130,42 @@ input[type="date"].form-input {
   padding: 15px;
 
 }
+
+/* Banner Container */
+.banner-container {
+  background-color: #f4f4f4; /* Change this to your desired background color */
+  padding: 20px 0; /* Add some padding above and below the banner */
+  margin-bottom: 20px; /* Space between banner and shoes section */
+}
+
+.banner-image {
+  max-width: 100%; /* Ensure the image doesn't exceed its container's width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+/* Shoes Section */
+.shoes-section {
+  margin-top: 20px;
+}
+
+.shoes-section h3 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.shoes-section .row {
+  margin: 0 -10px; /* Adjust spacing between columns */
+}
+
+.shoes-section .col-xs-6 {
+  padding: 10px; /* Add padding around each image */
+}
+
+.shoes-section img {
+  width: 100%; /* Make images responsive */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}

@@ -1,66 +1,63 @@
-
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<header>
-<link rel="stylesheet" href="{% static 'store/WebsiteCSS.css' %}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepRight</title>
+    <link rel="stylesheet" href="{% static 'store/WebsiteCSS.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
 <body>
-  
+    <!-- Navbar -->
     <nav class="navbar navbar-default">
-        
-          <ul class="nav navbar-nav">
-            <li><a href="#">Woman</a></li>
-            <li><a href="#">Men</a></li>
-            <li><a href="#">Children</a></li>
-            <li><a href="#">Trainers</a></li>
-          </ul>
-          
-          <div class="container-fluid" >
-            <div class="navbar-header"id="logo">
-              <a class="navbar-brand" href="{% url 'homepage' %}">StepRight</a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'homepage' %}">StepRight</a>
             </div>
-
+            <ul class="nav navbar-nav">
+                <li><a href="#">Woman</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Children</a></li>
+                <li><a href="#">Trainers</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Basket</a></li>
                 <li><a href="{% url 'Users:login' %}">Login</a></li>
-              </ul>
+            </ul>
         </div>
-       
-  </div>
-</nav>
+    </nav>
 
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Banner Section -->
+        <div class="banner-container text-center">
+            <img src="{{ MEDIA_URL }}shoe_images/banner.jpg" alt="Banner Image" class="banner-image">
+        </div>
 
-
-
-{% block content %}
-<div class="MainHomepageContent">
-  <ul class="MainBanner">
-    <li>
-      <h1> big cover image banner here </h1>
-      <br> <br> <br>
-    </li>
-  </ul>
-<ul class="NewIn">
-  <li>
-    <h3> New In </h3>
-  </li>
-  <li>
-    <img src="{{ MEDIA_URL }}shoe_images/th.jpeg" alt="Tester image of a shoe" class="NewIn_Images">
-    <img src="{{ MEDIA_URL }}shoe_images/OIP.jpg" alt="Tester image of a shoe" class="NewIn_Images">
-    <img src="{{ MEDIA_URL }}shoe_images/p.2.jpg" alt="Tester image of a shoe" class="NewIn_Images">
-    <img src="{{ MEDIA_URL }}shoe_images/th.jpeg" alt="Tester image of a shoe" class="NewIn_Images">
-  </li>
-
-</ul>
-</div>
-{% endblock content %}
-
-
-
+        <!-- Shoes Section -->
+        <div class="shoes-section">
+            <h3 class="text-center">Shoes</h3>
+            <div class="row">
+                <div class="col-xs-6 col-md-3">
+                    <img src="{{ MEDIA_URL }}shoe_images/th.jpeg" alt="Shoe Image" class="img-responsive">
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <img src="{{ MEDIA_URL }}shoe_images/OIP.jpg" alt="Shoe Image" class="img-responsive">
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <img src="{{ MEDIA_URL }}shoe_images/p.2.jpg" alt="Shoe Image" class="img-responsive">
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <img src="{{ MEDIA_URL }}shoe_images/red.jpg" alt="Shoe Image" class="img-responsive">
+                </div>
+                <div class="col-xs-6 col-md-3">
+                  <img src="{{ MEDIA_URL }}shoe_images/Spiderman.jpeg" alt="Shoe Image" class="img-responsive">
+                </div>                
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-
