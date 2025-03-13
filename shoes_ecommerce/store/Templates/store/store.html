@@ -2,7 +2,33 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <h2>Store</h2>
-</div>
-{% endblock content %}
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Banner Section -->
+        <div class="banner-container text-center">
+            <img src="{{ MEDIA_URL }}shoe_images/banner.jpg" alt="Banner Image" class="banner-image">
+        </div>
+
+        <!-- Shoes Section -->
+        <div class="shoes-section">
+            <h3 class="text-center">Shoes</h3>
+            <div class="row">
+                <div class="col-xs-6 col-md-3">
+                    <img src="{{ MEDIA_URL }}shoe_images/th.jpeg" alt="Shoe Image" class="img-responsive">
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <img src="{{ MEDIA_URL }}shoe_images/OIP.jpg" alt="Shoe Image" class="img-responsive">
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <img src="{{ MEDIA_URL }}shoe_images/p.2.jpg" alt="Shoe Image" class="img-responsive">
+                </div>
+                <div class="col-xs-6 col-md-3">
+                    <img src="{{ MEDIA_URL }}shoe_images/red.jpg" alt="Shoe Image" class="img-responsive">
+                </div>
+                <div class="col-xs-6 col-md-3">
+                  <img src="{{ MEDIA_URL }}shoe_images/Spiderman.jpeg" alt="Shoe Image" class="img-responsive">
+                </div>                
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
