@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Users.apps.UsersConfig',  # Asegúrate que Users está después de auth
+    'Users.apps.UsersConfig', 
     'store',
 ]
 AUTH_USER_MODEL = 'Users.CustomUser'
