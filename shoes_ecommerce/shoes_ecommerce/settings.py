@@ -19,7 +19,6 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Users.apps.UsersConfig', 
     'store',
+
 ]
 AUTH_USER_MODEL = 'Users.CustomUser'
 
@@ -86,11 +86,14 @@ WSGI_APPLICATION = 'shoes_ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'steprightdb',
+        'USER': 'postgres',
+        'PASSWORD': os.environ.get('DB_PASSWORD'),  # Set in EC2 env vars
+        'HOST':  'group27-db.croa0wuq2ara.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -129,14 +132,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'store/Templates/'
-STATICFILES_DIRS = [
-    BASE_DIR / "store/Templates", 
-]
+#STATIC_URL = 'store/Templates/'
+#STATICFILES_DIRS = [
+    #BASE_DIR / "store/Templates", 
+#]
 
-import os
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -147,3 +149,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'Users:login'
 LOGIN_REDIRECT_URL = 'store:store'
 LOGOUT_REDIRECT_URL = 'homepage'
+
+AWS_STORAGE_BUCKET_NAME = 'group27-static-bucket'
+AWS_S3_REGION_NAME = 'us-east-1'  # Explicitly set region
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_DEFAULT_ACL = 'public-read'  # Required for public files
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+
+# Static/Media URLs (CloudFront if enabled)
+STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'  # For static files
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'  # For media files
