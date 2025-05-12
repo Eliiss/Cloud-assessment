@@ -19,7 +19,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,9 +29,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-bqc_3k%21ih1r5q+uds@2&p13+jyr9_uq89twh#-@c%-)ub7w8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+	'10.0.1.100',
+	'10.0.2.69',
+	'Group27-ALB-1568741619.us-east-1.elb.amazonaws.com',
+	'.compute-1.amazonaws.com',
+	'localhost', '127.0.0.1'
+]
 
 
 # Application definition
@@ -45,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Users.apps.UsersConfig', 
     'store',
+    'storages',
 
 ]
 AUTH_USER_MODEL = 'Users.CustomUser'
@@ -65,7 +72,9 @@ ROOT_URLCONF = 'shoes_ecommerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "Templates"],
+        'DIRS': [BASE_DIR / "Templates",
+	os.path.join(BASE_DIR, 'store', 'Templates')
+],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,9 +96,9 @@ WSGI_APPLICATION = 'shoes_ecommerce.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'steprightdb',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': os.environ.get('DB_PASSWORD'),  # Set in EC2 env vars
+        'PASSWORD': 'shoes_ecommerce',  
         'HOST':  'group27-db.croa0wuq2ara.us-east-1.rds.amazonaws.com',
         'PORT': '5432',
     }
@@ -151,14 +160,29 @@ LOGIN_REDIRECT_URL = 'store:store'
 LOGOUT_REDIRECT_URL = 'homepage'
 
 AWS_STORAGE_BUCKET_NAME = 'group27-static-bucket'
-AWS_S3_REGION_NAME = 'us-east-1'  # Explicitly set region
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_DEFAULT_ACL = 'public-read'  # Required for public files
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_S3_REGION_NAME = 'us-east-1'  
 
-# Static/Media URLs (CloudFront if enabled)
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400', # Browser caching for S3 objects
+}
+
+AWS_ACCESS_KEY_ID = None
+AWS_DEFAULT_ACL = None
+AWS_SECRET_ACCESS_KEY = None # This means EC2 can't WRITE to S3 directly with django-storages
+AWS_S3_FILE_OVERWRITE = False
+AWS_QUERYSTRING_AUTH = False
+
+
+# Static/Media URLs
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/{STATICFILES_LOCATION}/'
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com/{MEDIAFILES_LOCATION}/'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'  # For static files
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'  # For media files
+
+ELB_DNS_NAME = 'Group27-ALB-1568741619.us-east-1.elb.amazonaws.com'
+CSRF_TRUSTED_ORIGINS = [
+    f'https://{ELB_DNS_NAME}'
+]
